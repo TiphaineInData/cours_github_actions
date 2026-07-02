@@ -1,0 +1,9 @@
+name: 'dbt_ga'
+version: '1.0.0'
+profile: 'dbt_ga'
+
+model-paths: ["models"]
+
+models:
+  dbt_ga:
+    +materialized: view

@@ -1,0 +1,6 @@
+cle_bigquery.json
+.env
+dbt_ga/target/
+dbt_ga/dbt_packages/
+dbt_ga/logs/
+__pycache__/

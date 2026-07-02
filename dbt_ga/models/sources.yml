@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: ga
+    project: data-quest-tiphaine   # ← votre projet GCP
+    dataset: ga_test               # ← dataset où collecte.py écrit
+    tables:
+      - name: raw_events
