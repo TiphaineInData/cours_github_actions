@@ -10,18 +10,18 @@ from datetime import datetime, timezone
 from google.cloud import bigquery
 
 PROJECT = "data-quest-tiphaine"   # ton projet GCP
-RAW = "raw_data"                  # le dataset raw alimente par load_data.py
-ML = "ml"                         # le nouveau dataset dedie au ML
-TABLE_SOURCE = "ventes"           # ta table dans raw_data (adapte le nom)
+MARTS = "marts"                   # tes tables propres, produites par dbt
+FEATURES = "ventes_features"      # la table de features ML (un modele dbt)
+ML = "ml"                         # le dataset ou on ecrit les predictions
 
 
 def predire():
     client = bigquery.Client(project=PROJECT)
 
-    # 1) LIRE les dernieres lignes ingerees = les donnees a predire
+    # 1) LIRE les 3 dernieres lignes de la table de features PROPRE (surtout pas du raw !)
     df = client.query(f"""
         SELECT jour, promo, nb_articles
-        FROM `{PROJECT}.{RAW}.{TABLE_SOURCE}`
+        FROM `{PROJECT}.{MARTS}.{FEATURES}`
         ORDER BY inserted_at DESC
         LIMIT 3
     """).to_dataframe(create_bqstorage_client=False)
