@@ -1,3 +1,7 @@
 google-cloud-bigquery
 python-dotenv
 dbt-bigquery
+scikit-learn==1.9.0
+joblib
+db-dtypes
+pyarrow
